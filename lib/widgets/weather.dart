@@ -1,31 +1,11 @@
 import 'package:FlutterWeather/bloc/weather_bloc.dart';
 import 'package:FlutterWeather/bloc/weather_event.dart';
 import 'package:FlutterWeather/bloc/weather_state.dart';
-import 'package:FlutterWeather/repositories/repositories.dart';
 import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Weather extends StatefulWidget {
-  final WeatherRepository weatherRepository;
-
-  Weather({Key key, @required this.weatherRepository})
-      : assert(weatherRepository != null),
-        super(key: key);
-
-  @override
-  State<Weather> createState() => _WeatherState();
-}
-
-class _WeatherState extends State<Weather> {
-  WeatherBloc _weatherBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _weatherBloc = WeatherBloc(weatherRepository: widget.weatherRepository);
-  }
-
+class Weather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,23 +22,23 @@ class _WeatherState extends State<Weather> {
                 ),
               );
               if (city != null) {
-                _weatherBloc.dispatch(FetchWeather(city: city));
+                BlocProvider.of<WeatherBloc>(context)
+                    .add(WeatherRequested(city: city));
               }
             },
           )
         ],
       ),
       body: Center(
-        child: BlocBuilder(
-          bloc: _weatherBloc,
-          builder: (_, WeatherState state) {
-            if (state is WeatherEmpty) {
+        child: BlocBuilder<WeatherBloc, WeatherState>(
+          builder: (context, state) {
+            if (state is WeatherInitial) {
               return Center(child: Text('Please Select a Location'));
             }
-            if (state is WeatherLoading) {
+            if (state is WeatherLoadInProgress) {
               return Center(child: CircularProgressIndicator());
             }
-            if (state is WeatherLoaded) {
+            if (state is WeatherLoadSuccess) {
               final weather = state.weather;
 
               return ListView(
@@ -83,10 +63,10 @@ class _WeatherState extends State<Weather> {
                 ],
               );
             }
-            if (state is WeatherError) {
+            if (state is WeatherLoadFailure) {
               return Text(
                 'No weather data!',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Colors.yellow),
               );
             }
             return Text(
@@ -97,11 +77,5 @@ class _WeatherState extends State<Weather> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _weatherBloc.dispose();
-    super.dispose();
   }
 }

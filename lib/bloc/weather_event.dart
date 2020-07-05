@@ -2,13 +2,14 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 abstract class WeatherEvent extends Equatable {
-  WeatherEvent([List props = const []]) : super(props);
+  const WeatherEvent();
 }
 
-class FetchWeather extends WeatherEvent {
+class WeatherRequested extends WeatherEvent {
   final String city;
 
-  FetchWeather({@required this.city})
-      : assert(city != null),
-        super([city]);
+  const WeatherRequested({@required this.city}) : assert(city != null);
+
+  @override
+  List<Object> get props => [city];
 }
