@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  Bloc.observer = SimpleBlocObserver();
 
   final WeatherRepository weatherRepository = WeatherRepository(
     weatherApiClient: WeatherApiClient(
@@ -19,23 +19,23 @@ void main() {
   runApp(App(weatherRepository: weatherRepository));
 }
 
-class SimpleBlocDelegate extends BlocDelegate {
+class SimpleBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object event) {
-    print('onEvent $event');
     super.onEvent(bloc, event);
+    print('onEvent $event');
   }
 
   @override
   onTransition(Bloc bloc, Transition transition) {
-    print('onTransition $transition');
     super.onTransition(bloc, transition);
+    print('onTransition $transition');
   }
 
   @override
   void onError(Bloc bloc, Object error, StackTrace stackTrace) {
-    print('onError $error');
     super.onError(bloc, error, stackTrace);
+    print('onError $error');
   }
 }
 
