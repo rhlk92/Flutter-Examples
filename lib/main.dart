@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
-import 'package:http/http.dart' as http;
-import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:FlutterWeather/repositories/weather_api_client.dart';
 import 'package:FlutterWeather/repositories/weather_repository.dart';
-
+import 'package:FlutterWeather/widgets/widgets.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   BlocSupervisor().delegate = SimpleBlocDelegate();
-
 
   final WeatherRepository weatherRepository = WeatherRepository(
     weatherApiClient: WeatherApiClient(
