@@ -50,6 +50,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Weather',
+      debugShowCheckedModeBanner: false,
+      theme: new ThemeData(
+        brightness: Brightness.dark,
+      ),
       home: BlocProvider(
         create: (context) => WeatherBloc(weatherRepository: weatherRepository),
         child: Weather(),
