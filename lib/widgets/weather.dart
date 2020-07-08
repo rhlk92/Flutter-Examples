@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:FlutterWeather/bloc/weather_bloc.dart';
-import 'package:FlutterWeather/bloc/weather_event.dart';
-import 'package:FlutterWeather/bloc/weather_state.dart';
+import 'package:FlutterWeather/bloc/weather/weather_bloc.dart';
+import 'package:FlutterWeather/bloc/weather/weather_event.dart';
+import 'package:FlutterWeather/bloc/weather/weather_state.dart';
 import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +27,17 @@ class _WeatherState extends State<Weather> {
       appBar: AppBar(
         title: Text('Flutter Weather'),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Settings(),
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
