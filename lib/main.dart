@@ -2,6 +2,7 @@ import 'package:FlutterWeather/bloc/settings/settings_bloc.dart';
 import 'package:FlutterWeather/bloc/weather/weather_bloc.dart';
 import 'package:FlutterWeather/repositories/weather_api_client.dart';
 import 'package:FlutterWeather/repositories/weather_repository.dart';
+import 'package:FlutterWeather/simple_bloc_observer.dart';
 import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -27,26 +28,6 @@ void main() {
       child: App(weatherRepository: weatherRepository),
     ),
   );
-}
-
-class SimpleBlocObserver extends BlocObserver {
-  @override
-  void onEvent(Bloc bloc, Object event) {
-    super.onEvent(bloc, event);
-    print('onEvent $event');
-  }
-
-  @override
-  onTransition(Bloc bloc, Transition transition) {
-    super.onTransition(bloc, transition);
-    print('onTransition $transition');
-  }
-
-  @override
-  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
-    super.onError(bloc, error, stackTrace);
-    print('onError $error');
-  }
 }
 
 class App extends StatelessWidget {
