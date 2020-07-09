@@ -1,5 +1,5 @@
 import 'package:FlutterWeather/models/weather.dart';
-import 'package:FlutterWeather/repositories/weather_repository.dart';
+import 'package:FlutterWeather/repositories/weather/weather_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
