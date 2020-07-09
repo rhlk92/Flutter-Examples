@@ -1,6 +1,4 @@
-import 'package:FlutterWeather/models/models.dart';
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+part of 'weather_bloc.dart';
 
 abstract class WeatherState extends Equatable {
   const WeatherState();

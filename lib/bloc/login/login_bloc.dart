@@ -1,10 +1,12 @@
 import 'package:FlutterWeather/bloc/authentication/authentication_bloc.dart';
-import 'package:FlutterWeather/bloc/authentication/authentication_event.dart';
-import 'package:FlutterWeather/bloc/login/logic_state.dart';
-import 'package:FlutterWeather/bloc/login/login_event.dart';
 import 'package:FlutterWeather/repositories/user/user_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+
+part 'login_event.dart';
+
+part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepository;

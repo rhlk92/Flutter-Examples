@@ -1,10 +1,12 @@
 import 'package:FlutterWeather/models/weather.dart';
 import 'package:FlutterWeather/repositories/weather/weather_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import 'weather_event.dart';
-import 'weather_state.dart';
+part 'weather_event.dart';
+
+part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository weatherRepository;
