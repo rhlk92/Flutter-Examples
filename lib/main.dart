@@ -1,8 +1,8 @@
 import 'package:FlutterWeather/bloc/settings/settings_bloc.dart';
+import 'package:FlutterWeather/bloc/simple_bloc_observer.dart';
 import 'package:FlutterWeather/bloc/weather/weather_bloc.dart';
-import 'package:FlutterWeather/repositories/weather_api_client.dart';
-import 'package:FlutterWeather/repositories/weather_repository.dart';
-import 'package:FlutterWeather/simple_bloc_observer.dart';
+import 'package:FlutterWeather/repositories/weather/weather_api_client.dart';
+import 'package:FlutterWeather/repositories/weather/weather_repository.dart';
 import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +19,8 @@ void main() {
   );
 
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<SettingsBloc>(
-          create: (context) => SettingsBloc(),
-        ),
-      ],
+    BlocProvider<SettingsBloc>(
+      create: (context) => SettingsBloc(),
       child: App(weatherRepository: weatherRepository),
     ),
   );
