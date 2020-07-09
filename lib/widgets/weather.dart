@@ -1,8 +1,7 @@
 import 'dart:async';
 
+import 'package:FlutterWeather/bloc/authentication/authentication_bloc.dart';
 import 'package:FlutterWeather/bloc/weather/weather_bloc.dart';
-import 'package:FlutterWeather/bloc/weather/weather_event.dart';
-import 'package:FlutterWeather/bloc/weather/weather_state.dart';
 import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,6 +50,13 @@ class _WeatherState extends State<Weather> {
                 BlocProvider.of<WeatherBloc>(context)
                     .add(WeatherRequested(city: city));
               }
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () async {
+              BlocProvider.of<AuthenticationBloc>(context)
+                  .add(AuthenticationLoggedOut());
             },
           )
         ],
