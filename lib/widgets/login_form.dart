@@ -8,7 +8,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
@@ -16,7 +16,7 @@ class _LoginFormState extends State<LoginForm> {
     _onLoginButtonPressed() {
       BlocProvider.of<LoginBloc>(context).add(
         LoginButtonPressed(
-          username: _usernameController.text,
+          username: _emailController.text,
           password: _passwordController.text,
         ),
       );
@@ -35,31 +35,47 @@ class _LoginFormState extends State<LoginForm> {
       },
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
-          return Form(
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'username'),
-                  controller: _usernameController,
+          return Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Form(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Image.asset('assets/logo.png', height: 150),
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        icon: Icon(Icons.email),
+                      ),
+                      controller: _emailController,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        icon: Icon(Icons.lock),
+                      ),
+                      controller: _passwordController,
+                      obscureText: true,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: RaisedButton(
+                        onPressed: state is! LoginInProgress
+                            ? _onLoginButtonPressed
+                            : null,
+                        child: Text('LOGIN'),
+                      ),
+                    ),
+                    Container(
+                      child: state is LoginInProgress
+                          ? CircularProgressIndicator()
+                          : null,
+                    ),
+                  ],
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'password'),
-                  controller: _passwordController,
-                  obscureText: true,
-                ),
-                RaisedButton(
-                  onPressed:
-                      state is! LoginInProgress ? _onLoginButtonPressed : null,
-                  child: Text('Login'),
-                ),
-                Container(
-                  child: state is LoginInProgress
-                      ? CircularProgressIndicator()
-                      : null,
-                ),
-              ],
-            ),
-          );
+              ));
         },
       ),
     );
