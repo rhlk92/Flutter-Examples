@@ -41,21 +41,6 @@ class _WeatherState extends State<Weather> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () async {
-              final city = await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CitySelection(),
-                ),
-              );
-              if (city != null) {
-                BlocProvider.of<WeatherBloc>(context)
-                    .add(WeatherRequested(city: city));
-              }
-            },
-          ),
-          IconButton(
             icon: Icon(Icons.exit_to_app),
             onPressed: () async {
               BlocProvider.of<AuthenticationBloc>(context)
@@ -125,6 +110,20 @@ class _WeatherState extends State<Weather> {
           },
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final city = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CitySelection(),
+              ),
+            );
+            if (city != null) {
+              BlocProvider.of<WeatherBloc>(context)
+                  .add(WeatherRequested(city: city));
+            }
+          },
+          child: Icon(Icons.search)),
     );
   }
 }
