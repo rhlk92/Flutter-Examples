@@ -24,7 +24,8 @@ class _WeatherState extends State<Weather> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Weather'),
+        title: Text('Weather'),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.settings),
