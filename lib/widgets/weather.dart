@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:FlutterWeather/bloc/authentication/authentication_bloc.dart';
-import 'package:FlutterWeather/bloc/weather/weather_bloc.dart';
+import 'package:FlutterWeather/bloc/bloc.dart';
 import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +32,10 @@ class _WeatherState extends State<Weather> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Settings(),
+                  builder: (_) => BlocProvider.value(
+                    value: context.bloc<SettingsBloc>(),
+                    child: Settings(),
+                  ),
                 ),
               );
             },

@@ -1,37 +1,29 @@
-import 'package:FlutterWeather/bloc/settings/settings_bloc.dart';
+import 'package:FlutterWeather/bloc/bloc.dart';
 import 'package:FlutterWeather/bloc/simple_bloc_observer.dart';
-import 'package:FlutterWeather/bloc/weather/weather_bloc.dart';
-import 'package:FlutterWeather/repositories/weather/weather_api_client.dart';
-import 'package:FlutterWeather/repositories/weather/weather_repository.dart';
+import 'package:FlutterWeather/repositories/repositories.dart';
 import 'package:FlutterWeather/widgets/widgets.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
-
-  final WeatherRepository weatherRepository = WeatherRepository(
-    weatherApiClient: WeatherApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
+  final userRepository = UserRepository();
   runApp(
-    BlocProvider<SettingsBloc>(
-      create: (context) => SettingsBloc(),
-      child: App(weatherRepository: weatherRepository),
+    BlocProvider<AuthenticationBloc>(
+      create: (context) {
+        return AuthenticationBloc(userRepository: userRepository)
+          ..add(AuthenticationStarted());
+      },
+      child: App(userRepository: userRepository),
     ),
   );
 }
 
 class App extends StatelessWidget {
-  final WeatherRepository weatherRepository;
+  final UserRepository userRepository;
 
-  App({Key key, @required this.weatherRepository})
-      : assert(weatherRepository != null),
-        super(key: key);
+  App({Key key, @required this.userRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +33,19 @@ class App extends StatelessWidget {
       theme: new ThemeData(
         brightness: Brightness.dark,
       ),
-      home: BlocProvider(
-        create: (context) => WeatherBloc(weatherRepository: weatherRepository),
-        child: Weather(),
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state is AuthenticationSuccess) {
+            return Home();
+          }
+          if (state is AuthenticationFailure) {
+            return Login(userRepository: userRepository);
+          }
+          if (state is AuthenticationInProgress) {
+            return LoadingIndicator();
+          }
+          return Splash();
+        },
       ),
     );
   }
