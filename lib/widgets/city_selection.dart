@@ -12,7 +12,7 @@ class _CitySelectionState extends State<CitySelection> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('City'),
+        title: Text('Search'),
       ),
       body: Form(
         child: Row(
