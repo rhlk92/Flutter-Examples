@@ -1,5 +1,6 @@
 export './city_selection.dart';
 export './combined_weather_temperature.dart';
+export './home.dart';
 export './last_updated.dart';
 export './loading_indicator.dart';
 export './location.dart';
