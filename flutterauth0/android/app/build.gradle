@@ -43,6 +43,9 @@ android {
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': 'com.rhlk92.flutterauth0'
+        ]
     }
 
     buildTypes {
