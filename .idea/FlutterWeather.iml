@@ -9,6 +9,18 @@
       <excludeFolder url="file://$MODULE_DIR$/flutterauth0/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/flutterauth0/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/flutterauth0/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_appauth/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_appauth/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_appauth/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_appauth/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_appauth/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_appauth/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_secure_storage/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_secure_storage/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_secure_storage/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_secure_storage/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_secure_storage/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterauth0/ios/.symlinks/plugins/flutter_secure_storage/example/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
